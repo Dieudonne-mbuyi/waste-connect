@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Dieudonné Mbuyi">
+
+    <meta name="description"
+        content="Carte interactive Waste Connect pour localiser les collecteurs et producteurs de déchets.">
+
+    <title>Carte - Waste Connect</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="js/map.js"></script>
+
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Waste Connect</h1>
+
+        <nav class="navbar">
+
+            <div class="logo">WasteConnect</div>
+
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house"></i> Accueil
+                    </a>
+                </li>
+
+                <li>
+                    <a href="map.html">
+                        <i class="fa-solid fa-map-location-dot"></i> Carte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collectors.html">
+                        <i class="fa-solid fa-truck"></i> Collecteurs
+                    </a>
+                </li>
+
+                <li>
+                    <a href="request_pickup.html">
+                        <i class="fa-solid fa-recycle"></i> Collecte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-chart-line"></i> Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        <i class="fa-solid fa-envelope"></i> Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <div class="menu-overlay"></div>
+    </header>
+
+
+    <section class="hero">
+
+        <h2>Carte des collecteurs et producteurs</h2>
+
+        <p>
+            Visualisez les acteurs de la gestion des déchets autour de vous.
+        </p>
+
+    </section>
+
+
+    <section class="container">
+
+        <div id="map"></div>
+        <div id="map"></div>
+
+    </section>
+
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+
+                <h3>Waste Connect</h3>
+
+                <p>
+                    Plateforme pour connecter producteurs et collecteurs de déchets à Mbuji-Mayi.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="map.html">Carte</a></li>
+                    <li><a href="collectors.html">Collecteurs</a></li>
+                    <li><a href="request_pickup.html">Collecte</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Contact</h3>
+
+                <ul>
+                    <li>Email : lorusdieudo@gmail.com</li>
+                    <li>Mbuji-Mayi</li>
+                    <li>RDC</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            © 2026 Waste Connect – Projet environnemental
+
+        </div>
+
+    </footer>
+
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+
+        // Initialiser la carte (centrée sur Mbuji-Mayi)
+
+        var map = L.map('map').setView([-6.15, 23.60], 12);
+
+        // Ajouter la carte OpenStreetMap
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+            maxZoom: 19
+
+        }).addTo(map);
+
+
+        // Charger les utilisateurs
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+
+        users.forEach(user => {
+
+            let lat = -6.15 + (Math.random() * 0.05)
+
+            let lng = 23.60 + (Math.random() * 0.05)
+
+            let markerColor = user.role === "collector" ? "green" : "blue"
+
+            let marker = L.marker([lat, lng]).addTo(map)
+
+            marker.bindPopup(
+
+                "<b>" + user.name + "</b><br>" +
+
+                "Rôle : " + user.role + "<br>" +
+
+                "Localisation : " + user.location
+
+            )
+
+        })
+        locateUser(map)
+        loadPollutionZones(map)
+
+    </script>
+
+
+
+</body>
+
+</html>

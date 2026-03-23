@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Jean",
+        "role": "Collecteur",
+        "lat": -6.15,
+        "lng": 23.60
+    },
+    {
+        "id": 2,
+        "name": "Marie",
+        "role": "Producteur",
+        "lat": -6.16,
+        "lng": 23.61
+    }
+]

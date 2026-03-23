@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact - Waste Connect</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Waste Connect</h1>
+
+        <nav class="navbar">
+
+            <div class="logo">WasteConnect</div>
+
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house"></i> Accueil
+                    </a>
+                </li>
+
+                <li>
+                    <a href="map.html">
+                        <i class="fa-solid fa-map-location-dot"></i> Carte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collectors.html">
+                        <i class="fa-solid fa-truck"></i> Collecteurs
+                    </a>
+                </li>
+
+                <li>
+                    <a href="request_pickup.html">
+                        <i class="fa-solid fa-recycle"></i> Collecte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-chart-line"></i> Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        <i class="fa-solid fa-envelope"></i> Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <div class="menu-overlay"></div>
+    </header>
+
+
+    <section class="hero">
+
+        <h2>Contactez-nous</h2>
+
+        <p>
+            Une question ? Une suggestion ? Une collaboration ?
+            Notre équipe est prête à vous répondre.
+        </p>
+
+    </section>
+
+
+    <section class="container">
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Email</h3>
+
+                <p>lorusdieudo@gmail.com</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Téléphone</h3>
+
+                <p>+243 894 729 324</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Localisation</h3>
+
+                <p>Mbuji-Mayi, RDC</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="container">
+
+        <h2 style="text-align:center">Envoyer un message</h2>
+
+        <form id="contactForm">
+
+            <input type="text" id="name" placeholder="Votre nom" required>
+
+            <input type="email" id="email" placeholder="Votre email" required>
+
+            <textarea id="message" placeholder="Votre message" rows="5" required></textarea>
+
+            <button type="submit">
+
+                Envoyer le message
+
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section class="container">
+
+        <h2 style="text-align:center">Pourquoi nous contacter ?</h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Partenariats</h3>
+
+                <p>
+                    Entreprises et ONG peuvent collaborer avec Waste Connect.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Support technique</h3>
+
+                <p>
+                    Notre équipe peut vous aider à utiliser la plateforme.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Suggestions</h3>
+
+                <p>
+                    Vos idées nous aident à améliorer le service.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+
+                <h3>Waste Connect</h3>
+
+                <p>
+                    Plateforme pour connecter producteurs et collecteurs de déchets à Mbuji-Mayi.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="map.html">Carte</a></li>
+                    <li><a href="collectors.html">Collecteurs</a></li>
+                    <li><a href="request_pickup.html">Collecte</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Contact</h3>
+
+                <ul>
+                    <li>Email : lorusdieudo@gmail.com</li>
+                    <li>Mbuji-Mayi</li>
+                    <li>RDC</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            © 2026 Waste Connect – Projet environnemental
+
+        </div>
+
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <script>
+
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+
+            e.preventDefault()
+
+            alert("Merci pour votre message. Nous vous répondrons bientôt.")
+
+            this.reset()
+
+        })
+
+    </script>
+
+
+</body>
+
+</html>

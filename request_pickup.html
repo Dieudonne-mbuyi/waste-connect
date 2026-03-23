@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Dieudonné Mbuyi">
+    <meta name="description"
+        content="Page de demande de collecte de déchets sur Waste Connect. Créez et suivez vos demandes facilement.">
+    <title>Demande de collecte - Waste Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Waste Connect - Demande de collecte</h1>
+        <nav class="navbar">
+
+            <div class="logo">WasteConnect</div>
+
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house"></i> Accueil
+                    </a>
+                </li>
+
+                <li>
+                    <a href="map.html">
+                        <i class="fa-solid fa-map-location-dot"></i> Carte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collectors.html">
+                        <i class="fa-solid fa-truck"></i> Collecteurs
+                    </a>
+                </li>
+
+                <li>
+                    <a href="request_pickup.html">
+                        <i class="fa-solid fa-recycle"></i> Collecte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-chart-line"></i> Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        <i class="fa-solid fa-envelope"></i> Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <div class="menu-overlay"></div>
+    </header>
+
+    <section class="container">
+        <h2>Créer une demande de collecte</h2>
+
+        <form id="pickupForm">
+            <label for="wasteType">Type de déchets :</label>
+            <select id="wasteType" required>
+                <option value="">--Sélectionner--</option>
+                <option value="plastique">Plastique</option>
+                <option value="papier">Papier</option>
+                <option value="métal">Métal</option>
+                <option value="organique">Organique</option>
+                <option value="autre">Autre</option>
+            </select>
+
+            <label for="quantity">Quantité (kg) :</label>
+            <input type="number" id="quantity" required min="1">
+
+            <label for="location">Adresse de collecte :</label>
+            <input type="text" id="location" required placeholder="Votre adresse complète">
+
+            <button type="submit">Soumettre la demande</button>
+        </form>
+
+        <div id="confirmation"></div>
+    </section>
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+
+                <h3>Waste Connect</h3>
+
+                <p>
+                    Plateforme pour connecter producteurs et collecteurs de déchets à Mbuji-Mayi.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="map.html">Carte</a></li>
+                    <li><a href="collectors.html">Collecteurs</a></li>
+                    <li><a href="request_pickup.html">Collecte</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Contact</h3>
+
+                <ul>
+                    <li>Email : lorusdieudo@gmail.com</li>
+                    <li>Mbuji-Mayi</li>
+                    <li>RDC</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            © 2026 Waste Connect – Projet environnemental
+
+        </div>
+
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Vérifier si utilisateur connecté
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (!currentUser) {
+            alert("Vous devez vous connecter");
+            window.location.href = "login.html";
+        }
+
+        // Déconnexion
+        document.getElementById("logoutBtn").addEventListener("click", function () {
+            localStorage.removeItem("currentUser");
+            window.location.href = "login.html";
+        });
+
+        // Soumission du formulaire
+        document.getElementById("pickupForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Récupérer les valeurs
+            const wasteType = document.getElementById("wasteType").value;
+            const quantity = document.getElementById("quantity").value;
+            const location = document.getElementById("location").value;
+
+            // Créer la demande
+            let requests = JSON.parse(localStorage.getItem("pickupRequests")) || [];
+            const newRequest = {
+                producerEmail: currentUser.email,
+                collectorEmail: "", // Assignation future possible
+                wasteType: wasteType,
+                quantity: quantity,
+                location: location,
+                status: "En attente"
+            };
+            requests.push(newRequest);
+            localStorage.setItem("pickupRequests", JSON.stringify(requests));
+
+            // Confirmation à l'utilisateur
+            document.getElementById("confirmation").innerHTML = `
+    <p class="success">Demande créée avec succès ! Vous pouvez suivre son statut dans le <a href="dashboard.html">Dashboard</a>.</p>
+    `;
+
+            // Reset formulaire
+            document.getElementById("pickupForm").reset();
+        });
+    </script>
+
+</body>
+
+</html>

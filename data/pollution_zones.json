@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Marché Central",
+        "lat": -6.137,
+        "lng": 23.59,
+        "level": "élevé"
+    },
+    {
+        "name": "Bipemba",
+        "lat": -6.145,
+        "lng": 23.61,
+        "level": "moyen"
+    },
+    {
+        "name": "Diulu",
+        "lat": -6.150,
+        "lng": 23.62,
+        "level": "faible"
+    }
+]

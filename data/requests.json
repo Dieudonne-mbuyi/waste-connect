@@ -1,0 +1,9 @@
+[
+    {
+        "producerEmail": "producer1@mail.com",
+        "wasteType": "plastique",
+        "quantity": 10,
+        "location": "Mbuji-Mayi",
+        "status": "En attente"
+    }
+]

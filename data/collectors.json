@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Jean Collecteur",
+        "location": "Mbuji-Mayi",
+        "email": "collecteur1@mail.com"
+    },
+    {
+        "name": "Jean Mukendi",
+        "location": "Diulu",
+        "phone": "0990000001",
+        "rating": 4.5
+    },
+    {
+        "name": "Patrick Tshibangu",
+        "location": "Bipemba",
+        "phone": "0990000002",
+        "rating": 4.2
+    },
+    {
+        "name": "Joseph Kabongo",
+        "location": "Muya",
+        "phone": "0990000003",
+        "lat": -6.150,
+        "lgn": 23.620,
+        "rating": 4.8
+    },
+    {
+        "name": "dieudo",
+        "location": "Dibindi",
+        "phone": "0894729324",
+        "lat": -6.150,
+        "rating": 4.11,
+        "lgn": 24.500
+    }
+]

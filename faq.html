@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Dieudonné Mbuyi">
+
+    <meta name="description"
+        content="Questions fréquentes sur Waste Connect, plateforme de connexion entre producteurs et collecteurs de déchets.">
+
+    <title>FAQ - Waste Connect</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            background: #f9f9f9;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>FAQ - Waste Connect</h1>
+
+        <nav class="navbar">
+
+            <div class="logo">WasteConnect</div>
+
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house"></i> Accueil
+                    </a>
+                </li>
+
+                <li>
+                    <a href="map.html">
+                        <i class="fa-solid fa-map-location-dot"></i> Carte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collectors.html">
+                        <i class="fa-solid fa-truck"></i> Collecteurs
+                    </a>
+                </li>
+
+                <li>
+                    <a href="request_pickup.html">
+                        <i class="fa-solid fa-recycle"></i> Collecte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-chart-line"></i> Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        <i class="fa-solid fa-envelope"></i> Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <div class="menu-overlay"></div>
+
+    </header>
+
+
+    <section class="hero">
+
+        <h2>Questions fréquentes</h2>
+
+        <p>
+            Voici les réponses aux questions les plus courantes concernant la plateforme Waste Connect.
+        </p>
+
+    </section>
+
+
+    <section class="container">
+
+        <div class="faq-item">
+
+            <h3>Comment créer un compte ?</h3>
+
+            <div class="faq-answer">
+
+                <p>
+                    Cliquez sur "Créer un compte" puis remplissez vos informations.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <h3>Comment demander une collecte de déchets ?</h3>
+
+            <div class="faq-answer">
+
+                <p>
+                    Connectez-vous puis allez dans la page "Demande de collecte".
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <h3>Qui peut devenir collecteur ?</h3>
+
+            <div class="faq-answer">
+
+                <p>
+                    Toute personne ou entreprise qui souhaite participer à la gestion des déchets peut s'inscrire comme
+                    collecteur.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <h3>Comment trouver un collecteur près de moi ?</h3>
+
+            <div class="faq-answer">
+
+                <p>
+                    Utilisez la carte interactive pour voir les collecteurs disponibles dans votre zone.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <h3>La plateforme est-elle gratuite ?</h3>
+
+            <div class="faq-answer">
+
+                <p>
+                    Oui, Waste Connect vise à faciliter la gestion des déchets et l'amélioration de l'environnement.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+
+                <h3>Waste Connect</h3>
+
+                <p>
+                    Plateforme pour connecter producteurs et collecteurs de déchets à Mbuji-Mayi.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="map.html">Carte</a></li>
+                    <li><a href="collectors.html">Collecteurs</a></li>
+                    <li><a href="request_pickup.html">Collecte</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Contact</h3>
+
+                <ul>
+                    <li>Email : lorusdieudo@gmail.com</li>
+                    <li>Mbuji-Mayi</li>
+                    <li>RDC</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            © 2026 Waste Connect – Projet environnemental
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        let faqItems = document.querySelectorAll(".faq-item")
+
+        faqItems.forEach(item => {
+
+            item.addEventListener("click", function () {
+
+                let answer = this.querySelector(".faq-answer")
+
+                if (answer.style.display === "block") {
+
+                    answer.style.display = "none"
+
+                } else {
+
+                    answer.style.display = "block"
+
+                }
+
+            })
+
+        })
+
+    </script>
+
+
+</body>
+
+</html>

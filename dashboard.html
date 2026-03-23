@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Dieudonné Mbuyi">
+    <meta name="description"
+        content="Dashboard Waste Connect pour gérer les collecteurs, producteurs et demandes de collecte de déchets.">
+    <title>Dashboard - Waste Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/analytics.js"></script>
+
+    <script>
+        loadAnalytics()
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Waste Connect - Dashboard</h1>
+        <nav class="navbar">
+
+            <div class="logo">WasteConnect</div>
+
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house"></i> Accueil
+                    </a>
+                </li>
+
+                <li>
+                    <a href="map.html">
+                        <i class="fa-solid fa-map-location-dot"></i> Carte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collectors.html">
+                        <i class="fa-solid fa-truck"></i> Collecteurs
+                    </a>
+                </li>
+
+                <li>
+                    <a href="request_pickup.html">
+                        <i class="fa-solid fa-recycle"></i> Collecte
+                    </a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-chart-line"></i> Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        <i class="fa-solid fa-envelope"></i> Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <div class="menu-overlay"></div>
+    </header>
+
+    <section class="hero">
+        <h2>Bienvenue, <span id="userName"></span></h2>
+        <p id="userRole"></p>
+    </section>
+
+    <section class="container">
+        <h3>Vos informations :</h3>
+        <div id="userInfo">
+            <!-- Infos utilisateur -->
+        </div>
+
+        <h3>Demandes de collecte :</h3>
+        <div id="requestsList">
+            <!-- Liste dynamique des demandes -->
+        </div>
+        <h3>Impact environnemental</h3>
+
+        <div id="environmentStats"></div>
+        <h3>Notifications</h3>
+
+        <div id="notifications"></div>
+    </section>
+    <section>
+        <h2>Valeur économique du recyclage</h2>
+
+        <div id="economicValue"></div>
+    </section>
+    <section class="stats">
+
+        <div class="stat">
+
+            <h2 id="totalCollectors">0</h2>
+
+            <p>Collecteurs</p>
+
+        </div>
+
+        <div class="stat">
+
+            <h2 id="totalProducers">0</h2>
+
+            <p>Producteurs</p>
+
+        </div>
+
+        <div class="stat">
+
+            <h2 id="totalWaste">0</h2>
+
+            <p>Déchets collectés</p>
+
+        </div>
+
+    </section>
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+
+                <h3>Waste Connect</h3>
+
+                <p>
+                    Plateforme pour connecter producteurs et collecteurs de déchets à Mbuji-Mayi.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="map.html">Carte</a></li>
+                    <li><a href="collectors.html">Collecteurs</a></li>
+                    <li><a href="request_pickup.html">Collecte</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Contact</h3>
+
+                <ul>
+                    <li>Email : lorusdieudo@gmail.com</li>
+                    <li>Mbuji-Mayi</li>
+                    <li>RDC</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            © 2026 Waste Connect – Projet environnemental
+
+        </div>
+
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Vérifier si utilisateur connecté
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+        if (!currentUser) {
+            alert("Vous devez vous connecter");
+            window.location.href = "login.html";
+        }
+
+        // Afficher nom et rôle
+        document.getElementById("userName").innerText = currentUser.name;
+        document.getElementById("userRole").innerText = currentUser.role === "collector" ? "Collecteur de déchets" : "Producteur de déchets";
+
+        // Afficher informations utilisateur
+        document.getElementById("userInfo").innerHTML = `
+<ul>
+<li><strong>Email:</strong> ${currentUser.email}</li>
+<li><strong>Rôle:</strong> ${currentUser.role}</li>
+<li><strong>Localisation:</strong> ${currentUser.location}</li>
+</ul>
+`;
+
+        // Gestion demandes de collecte
+        let requests = JSON.parse(localStorage.getItem("pickupRequests")) || [];
+        let listHTML = "";
+        requests.forEach((req, index) => {
+            // Chaque rôle voit ses demandes pertinentes
+            if ((currentUser.role === "producer" && req.producerEmail === currentUser.email) ||
+                (currentUser.role === "collector" && req.collectorEmail === currentUser.email)) {
+                listHTML += `<div class="request">
+        <p><strong>Demande #${index + 1}</strong></p>
+        <p>Adresse: ${req.location}</p>
+        <p>Type déchets: ${req.wasteType}</p>
+        <p>Quantité: ${req.quantity}</p>
+        <p>Statut: ${req.status}</p>
+        </div>`;
+            }
+        });
+        document.getElementById("requestsList").innerHTML = listHTML || "<p>Aucune demande pour le moment.</p>";
+
+        // Déconnexion
+        document.getElementById("logoutBtn").addEventListener("click", function () {
+            localStorage.removeItem("currentUser");
+            window.location.href = "login.html";
+        });
+        let stats = calculateStats()
+
+        document.getElementById("environmentStats").innerHTML =
+
+            "<p>Demandes totales : <strong>" + stats.totalRequests + "</strong></p>" +
+            "<p>Déchets collectés : <strong>" + stats.totalWaste + " kg</strong></p>"
+        let value = calculateRecyclingValue()
+
+        document.getElementById("economicValue").innerHTML =
+            "<h3>" + value.toFixed(2) + " USD générés par le recyclage</h3>"
+    </script>
+
+</body>
+
+</html>
