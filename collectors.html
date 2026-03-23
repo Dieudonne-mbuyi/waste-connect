@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="js/collectors.js"></script>
+    <script src="js/collectors.js" defer></script>
 
 </head>
 
@@ -80,7 +80,7 @@
 
     <section class="collectors-section container">
 
-        <h1 class="page-title">Trouver un collecteur</h1>
+        <h2 class="page-title">Trouver un collecteur</h2>
         <div id="collectorsList"></div>
         <div class="search-box">
 
@@ -97,6 +97,8 @@
             </div>
 
             <div id="collectorList" class="collector-grid"></div>
+
+        </div>
 
     </section>
 
@@ -189,7 +191,7 @@ Noter ce collecteur
 
         displayCollectors(collectors)
 
-        document.getElementById("searchLocation").addEventListener("input", function () {
+        document.getElementById("commune").addEventListener("input", function () {
 
             let search = this.value.toLowerCase()
 

@@ -5,15 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Dieudonné Mbuyi">
-    <meta name="description"
-        content="Dashboard Waste Connect pour gérer les collecteurs, producteurs et demandes de collecte de déchets.">
+    <meta name="description" content="Dashboard Waste Connect pour gérer les collecteurs, producteurs et demandes de collecte de déchets.">
     <title>Dashboard - Waste Connect</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/analytics.js"></script>
-
-    <script>
-        loadAnalytics()
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -79,6 +73,9 @@
     <section class="hero">
         <h2>Bienvenue, <span id="userName"></span></h2>
         <p id="userRole"></p>
+        <button id="logoutBtn" class="btn">
+            <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
+        </button>
     </section>
 
     <section class="container">
@@ -180,8 +177,9 @@
 
     </footer>
 
+    <script src="js/analytics.js"></script>
     <script src="js/main.js"></script>
-    <script>
+    <script src="js/analytics.js"></script>
         // Vérifier si utilisateur connecté
         let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -207,19 +205,30 @@
         let requests = JSON.parse(localStorage.getItem("pickupRequests")) || [];
         let listHTML = "";
         requests.forEach((req, index) => {
-            // Chaque rôle voit ses demandes pertinentes
+            // Producteur: ses demandes. Collecteur: ses demandes + demandes non attribuées.
             if ((currentUser.role === "producer" && req.producerEmail === currentUser.email) ||
-                (currentUser.role === "collector" && req.collectorEmail === currentUser.email)) {
+                (currentUser.role === "collector" && (!req.collectorEmail || req.collectorEmail === currentUser.email))) {
+                const assignmentLabel = req.collectorEmail ? req.collectorEmail : "Non attribué"
+                const canTakeRequest = currentUser.role === "collector" && !req.collectorEmail
                 listHTML += `<div class="request">
         <p><strong>Demande #${index + 1}</strong></p>
         <p>Adresse: ${req.location}</p>
         <p>Type déchets: ${req.wasteType}</p>
         <p>Quantité: ${req.quantity}</p>
         <p>Statut: ${req.status}</p>
+        <p>Collecteur: ${assignmentLabel}</p>
+        ${canTakeRequest ? `<button class="btn" onclick="assignRequest(${index})">Prendre en charge</button>` : ""}
         </div>`;
             }
         });
         document.getElementById("requestsList").innerHTML = listHTML || "<p>Aucune demande pour le moment.</p>";
+
+        function assignRequest(index) {
+            requests[index].collectorEmail = currentUser.email
+            requests[index].status = "En cours"
+            localStorage.setItem("pickupRequests", JSON.stringify(requests))
+            window.location.reload()
+        }
 
         // Déconnexion
         document.getElementById("logoutBtn").addEventListener("click", function () {
@@ -236,6 +245,8 @@
 
         document.getElementById("economicValue").innerHTML =
             "<h3>" + value.toFixed(2) + " USD générés par le recyclage</h3>"
+
+        loadAnalytics()
     </script>
 
 </body>

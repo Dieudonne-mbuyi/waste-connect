@@ -1,7 +1,160 @@
-<h2>Discussion avec le collecteur</h2>
+<!DOCTYPE html>
+<html lang="fr">
 
-<div id="chatBox"></div>
+<head>
 
-<input type="text" id="messageInput" placeholder="Écrire un message...">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Dieudonné Mbuyi">
+  <meta name="description" content="Chat avec un collecteur sur la plateforme Waste Connect.">
 
-<button onclick="sendMessage()">Envoyer</button>
+  <title>Chat - Waste Connect</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+  <header>
+
+    <h1>Waste Connect</h1>
+
+    <nav class="navbar">
+
+      <div class="logo">WasteConnect</div>
+
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul class="nav-menu">
+
+        <li>
+          <a href="index.html">
+            <i class="fa-solid fa-house"></i> Accueil
+          </a>
+        </li>
+
+        <li>
+          <a href="map.html">
+            <i class="fa-solid fa-map-location-dot"></i> Carte
+          </a>
+        </li>
+
+        <li>
+          <a href="collectors.html">
+            <i class="fa-solid fa-truck"></i> Collecteurs
+          </a>
+        </li>
+
+        <li>
+          <a href="request_pickup.html">
+            <i class="fa-solid fa-recycle"></i> Collecte
+          </a>
+        </li>
+
+        <li>
+          <a href="dashboard.html">
+            <i class="fa-solid fa-chart-line"></i> Dashboard
+          </a>
+        </li>
+
+        <li>
+          <a href="contact.html">
+            <i class="fa-solid fa-envelope"></i> Contact
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+    <div class="menu-overlay"></div>
+
+  </header>
+
+
+  <section class="hero">
+
+    <h2>Discussion avec le collecteur</h2>
+
+    <p>Échangez des messages avec votre collecteur en temps réel.</p>
+
+  </section>
+
+
+  <section class="container">
+
+    <div id="chatBox"></div>
+
+    <div class="chat-input">
+      <label for="messageInput" class="sr-only">Votre message</label>
+      <input type="text" id="messageInput" placeholder="Écrire un message...">
+      <button onclick="sendMessage()">
+        <i class="fa-solid fa-paper-plane"></i> Envoyer
+      </button>
+    </div>
+
+  </section>
+
+
+  <footer>
+
+    <div class="footer-container">
+
+      <div class="footer-column">
+
+        <h3>Waste Connect</h3>
+
+        <p>
+          Plateforme pour connecter producteurs et collecteurs de déchets à Mbuji-Mayi.
+        </p>
+
+      </div>
+
+      <div class="footer-column">
+
+        <h3>Navigation</h3>
+
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="map.html">Carte</a></li>
+          <li><a href="collectors.html">Collecteurs</a></li>
+          <li><a href="request_pickup.html">Collecte</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-column">
+
+        <h3>Contact</h3>
+
+        <ul>
+          <li>Email : lorusdieudo@gmail.com</li>
+          <li>Mbuji-Mayi</li>
+          <li>RDC</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      © 2026 Waste Connect – Projet environnemental
+
+    </div>
+
+  </footer>
+
+
+  <script src="js/main.js"></script>
+  <script src="js/chat.js"></script>
+
+</body>
+
+</html>

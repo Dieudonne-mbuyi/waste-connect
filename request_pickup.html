@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Dieudonné Mbuyi">
-    <meta name="description"
-        content="Page de demande de collecte de déchets sur Waste Connect. Créez et suivez vos demandes facilement.">
+    <meta name="description" content="Page de demande de collecte de déchets sur Waste Connect. Créez et suivez vos demandes facilement.">
     <title>Demande de collecte - Waste Connect</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -62,6 +61,12 @@
                     <a href="contact.html">
                         <i class="fa-solid fa-envelope"></i> Contact
                     </a>
+                </li>
+
+                <li>
+                    <button id="logoutBtn" class="btn">
+                        <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
+                    </button>
                 </li>
 
             </ul>
@@ -153,6 +158,11 @@
         if (!currentUser) {
             alert("Vous devez vous connecter");
             window.location.href = "login.html";
+        }
+
+        if (currentUser && currentUser.role !== "producer") {
+            alert("Seuls les producteurs peuvent créer une demande de collecte.");
+            window.location.href = "dashboard.html";
         }
 
         // Déconnexion

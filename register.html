@@ -9,8 +9,7 @@
 
     <meta name="author" content="Dieudonné Mbuyi">
 
-    <meta name="description"
-        content="Créer un compte sur Waste Connect pour connecter les producteurs de déchets aux collecteurs et améliorer la gestion environnementale.">
+    <meta name="description" content="Créer un compte sur Waste Connect pour connecter les producteurs de déchets aux collecteurs et améliorer la gestion environnementale.">
 
     <title>Créer un compte - Waste Connect</title>
 
@@ -97,12 +96,16 @@
 
         <form id="registerForm">
 
+            <label for="name">Nom complet</label>
             <input type="text" id="name" placeholder="Nom complet" required>
 
+            <label for="email">Email</label>
             <input type="email" id="email" placeholder="Email" required>
 
+            <label for="password">Mot de passe</label>
             <input type="password" id="password" placeholder="Mot de passe" required>
 
+            <label for="role">Votre rôle</label>
             <select id="role" required>
 
                 <option value="">Choisir votre rôle</option>
@@ -117,6 +120,7 @@
 
             </select>
 
+            <label for="location">Ville ou quartier</label>
             <input type="text" id="location" placeholder="Ville ou quartier" required>
 
             <button type="submit">
@@ -127,7 +131,7 @@
 
         </form>
 
-        <p style="text-align:center;margin-top:20px">
+        <p>
 
             Vous avez déjà un compte ?
 
@@ -200,21 +204,38 @@
 
             e.preventDefault()
 
-            let user = {
+            let email = document.getElementById("email").value.trim().toLowerCase()
+            let password = document.getElementById("password").value
+            let name = document.getElementById("name").value.trim()
+            let role = document.getElementById("role").value
+            let location = document.getElementById("location").value.trim()
 
-                name: document.getElementById("name").value,
+            let users = JSON.parse(localStorage.getItem("users")) || []
 
-                email: document.getElementById("email").value,
+            let alreadyExists = users.some(u =>
+                u.email && u.email.toLowerCase() === email
+            )
 
-                password: document.getElementById("password").value,
+            if (alreadyExists) {
 
-                role: document.getElementById("role").value,
-
-                location: document.getElementById("location").value
+                alert("Un compte avec cet email existe déjà")
+                return
 
             }
 
-            let users = JSON.parse(localStorage.getItem("users")) || []
+            let user = {
+
+                name: name,
+
+                email: email,
+
+                password: password,
+
+                role: role,
+
+                location: location
+
+            }
 
             users.push(user)
 

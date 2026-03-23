@@ -1,10 +1,7 @@
 async function loadAnalytics() {
-
-    let collectors = await fetch("data/collectors.json")
-    collectors = await collectors.json()
-
-    let producers = await fetch("data/producers.json")
-    producers = await producers.json()
+    let users = JSON.parse(localStorage.getItem("users")) || []
+    let collectors = users.filter(u => u.role === "collector")
+    let producers = users.filter(u => u.role === "producer")
 
     let requests = JSON.parse(localStorage.getItem("pickupRequests")) || []
 
