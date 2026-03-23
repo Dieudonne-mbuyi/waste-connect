@@ -9,11 +9,6 @@
         content="Dashboard Waste Connect pour gérer les collecteurs, producteurs et demandes de collecte de déchets.">
     <title>Dashboard - Waste Connect</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/analytics.js"></script>
-
-    <script>
-        loadAnalytics()
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -79,6 +74,9 @@
     <section class="hero">
         <h2>Bienvenue, <span id="userName"></span></h2>
         <p id="userRole"></p>
+        <button id="logoutBtn" class="btn">
+            <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
+        </button>
     </section>
 
     <section class="container">
@@ -180,6 +178,7 @@
 
     </footer>
 
+    <script src="js/analytics.js"></script>
     <script src="js/main.js"></script>
     <script>
         // Vérifier si utilisateur connecté
@@ -236,6 +235,8 @@
 
         document.getElementById("economicValue").innerHTML =
             "<h3>" + value.toFixed(2) + " USD générés par le recyclage</h3>"
+
+        loadAnalytics()
     </script>
 
 </body>

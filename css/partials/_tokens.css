@@ -1,0 +1,13 @@
+:root {
+  --green-500: #27ae60;
+  --green-600: #219150;
+  --green-700: #1e8449;
+  --text-900: #333;
+  --bg-app: #f5f7fa;
+  --bg-white: #fff;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
