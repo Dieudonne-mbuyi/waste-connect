@@ -9,8 +9,7 @@
 
     <meta name="author" content="Dieudonné Mbuyi">
 
-    <meta name="description"
-        content="Waste Connect est une plateforme qui connecte les producteurs de déchets aux collecteurs pour améliorer la gestion des déchets et l'environnement en Afrique.">
+    <meta name="description" content="Waste Connect est une plateforme qui connecte les producteurs de déchets aux collecteurs pour améliorer la gestion des déchets et l'environnement en Afrique.">
 
     <title>Connexion - Waste Connect</title>
 
@@ -187,16 +186,28 @@
 
             e.preventDefault()
 
-            let email = document.getElementById("email").value
+            let email = document.getElementById("email").value.trim().toLowerCase()
             let password = document.getElementById("password").value
 
-            if (email && password) {
+            let users = JSON.parse(localStorage.getItem("users")) || []
+            let matchedUser = users.find(u =>
+                u.email &&
+                u.password === password &&
+                u.email.toLowerCase() === email
+            )
 
-                alert("Connexion réussie")
+            if (!matchedUser) {
 
-                window.location.href = "dashboard.html"
+                alert("Email ou mot de passe incorrect")
+                return
 
             }
+
+            localStorage.setItem("currentUser", JSON.stringify(matchedUser))
+
+            alert("Connexion réussie")
+
+            window.location.href = "dashboard.html"
 
         })
 

@@ -1,5 +1,6 @@
 @media (max-width: 768px) {
-  :is(nav ul, .nav-menu) {
+  nav ul,
+  .nav-menu {
     position: absolute;
     top: 70px;
     left: 0;
